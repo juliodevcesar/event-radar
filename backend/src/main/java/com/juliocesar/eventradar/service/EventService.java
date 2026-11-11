@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import com.juliocesar.eventradar.repository.EventRepository;
 import java.util.List;
 import com.juliocesar.eventradar.model.Event;
+import java.util.Optional;
 
 @Service
 public class EventService {
@@ -23,5 +24,10 @@ public class EventService {
 		return eventRepository.save(evento);
 		
 	}
+	
+	public Optional<Event> buscarEventosPorId(Long id) {
+		return eventRepository.findById(id);
+	}
+	
 }
  

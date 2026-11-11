@@ -6,6 +6,9 @@ import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;
 import com.juliocesar.eventradar.model.Event;
 
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -30,5 +33,14 @@ public class EventController {
 	public Event cadastrarEvento(@RequestBody Event evento) {
 		return eventService.salvarEvento(evento);
 	}
+	
+
+	@GetMapping("/{id}")
+	public ResponseEntity<Event> buscarEventoPorId(@PathVariable Long id) {
+		return eventService.buscarEventosPorId(id)
+            .map(ResponseEntity::ok)
+            .orElseGet(() -> ResponseEntity.notFound().build());
+}
+
 
 }
